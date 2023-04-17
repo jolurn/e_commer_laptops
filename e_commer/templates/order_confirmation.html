@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center mb-4">Confirmación del pedido</h1>
+                <p><strong>Número de pedido:</strong> {{ order.pk }}</p>
+                <p><strong>Fecha de pedido:</strong> {{ order.date_ordered }}</p>
+                <h4 class="mt-4">Artículos pedidos:</h4>
+                <ul>
+                    {% for item in order.orderitem_set.all %}
+                        <li>{{ item.laptop.marca }} {{ item.laptop.modelo }} - {{ item.quantity }} x {{ item.laptop.precio }}</li>
+                    {% endfor %}
+                </ul>
+                <hr>
+                <p><strong>Dirección de envío:</strong></p>
+                <p>{{ order.direccion }}</p>
+                <p>{{ order.ciudad }}, {{ order.provincia }}, {{ order.codigo_postal }}</p>
+                <p>{{ order.pais }}</p>
+                <hr>
+                <p class="mt-4"><strong>Total:</strong> {{ order.total }}</p>
+                <p class="text-center mt-4">Gracias por tu pedido.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

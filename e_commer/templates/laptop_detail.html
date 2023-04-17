@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ laptop.marca }} {{ laptop.modelo }}</h1>
+    <img src="{{ laptop.imagen.url }}" alt="{{ laptop.marca }} {{ laptop.modelo }}">
+    <p>Precio: ${{ laptop.precio }}</p>
+    <p>Descripción: {{ laptop.descripcion }}</p>
+{% endblock %}

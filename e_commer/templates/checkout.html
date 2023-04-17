@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Checkout</h1>
+  <p>Por favor, complete el siguiente formulario para realizar su compra:</p>
+
+  <form action="{% url 'checkout' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Comprar</button>
+  </form>
+{% endblock %}
+
