@@ -7,7 +7,7 @@
   <form action="{% url 'checkout' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Comprar</button>
+    <button type="submit" class="btn btn-primary">Comprar</button>
   </form>
 {% endblock %}
 

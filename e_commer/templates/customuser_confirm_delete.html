@@ -5,7 +5,7 @@
   <p>¿Estás seguro de que deseas eliminar el usuario "{{ object }}"?</p>
   <form method="post">
     {% csrf_token %}
-    <button type="submit">Sí, eliminar</button>
+    <button type="submit" class="btn btn-primary">Sí, eliminar</button>
   </form>
-  <p><a href="{% url 'customuser_list' %}">Cancelar</a></p>
+  <p><a href="{% url 'home' %}">Cancelar</a></p>
 {% endblock %}

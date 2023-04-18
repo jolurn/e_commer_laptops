@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 
 from django.contrib import admin
 from django.urls import path
-from e_commer.views import order_confirmation,checkout,eliminar_del_carrito,CustomUserListView, CustomUserCreateView, CustomUserUpdateView, CustomUserDeleteView,CustomPasswordChangeView,signout,home,laptops,laptop_detail,add_to_cart, cart
+from e_commer.views import order_confirmation,checkout,eliminar_del_carrito, CustomUserCreateView, CustomUserUpdateView, CustomUserDeleteView,CustomPasswordChangeView,signout,home,laptops,laptop_detail,add_to_cart, cart
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import LogoutView
 from django.views.generic.base import RedirectView
@@ -28,8 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
-    path('usuarios/', CustomUserListView.as_view(), name='customuser_list'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),   
     path('usuarios/nuevo/', CustomUserCreateView.as_view(), name='customuser_create'),
     path('usuarios/editar/<int:pk>/', CustomUserUpdateView.as_view(), name='customuser_update'),
     path('usuarios/eliminar/<int:pk>/', CustomUserDeleteView.as_view(), name='customuser_delete'),

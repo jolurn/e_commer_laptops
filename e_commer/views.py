@@ -18,35 +18,37 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from django.utils import timezone
+from django.utils.decorators import method_decorator
 
 def home(request):
     return render(request, 'home.html')
 
-class CustomUserListView(ListView):
-    model = CustomUser
-    template_name = 'customuser_list.html'
-    context_object_name = 'usuarios'
+# class CustomUserListView(ListView):
+#     model = CustomUser
+#     template_name = 'customuser_list.html'
+#     context_object_name = 'usuarios'
 
 class CustomUserCreateView(CreateView):
     model = CustomUser
     template_name = 'customuser_form.html'
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy('customuser_list')
+    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         form.instance.username = form.cleaned_data['email']
         return super().form_valid(form)
 
+@method_decorator(login_required, name='dispatch')
 class CustomUserUpdateView(UpdateView):
     model = CustomUser
     template_name = 'customuser_form.html'
     form_class = CustomUserForm
-    success_url = reverse_lazy('customuser_list')
+    success_url = reverse_lazy('home')
 
 class CustomUserDeleteView(DeleteView):
     model = CustomUser
     template_name = 'customuser_confirm_delete.html'
-    success_url = reverse_lazy('customuser_list')
+    success_url = reverse_lazy('home')
 
 class CustomLoginView(LoginView):
     template_name = 'login.html'
@@ -55,7 +57,7 @@ class CustomLoginView(LoginView):
 
 class CustomPasswordChangeView(PasswordChangeView):
     form_class = PasswordChangeForm
-    success_url = reverse_lazy('customuser_list')
+    success_url = reverse_lazy('home')
     template_name = 'change_password.html'
 
     def form_valid(self, form):
